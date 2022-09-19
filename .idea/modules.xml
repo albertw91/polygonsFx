@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/polingonsFx-build.iml" filepath="$PROJECT_DIR$/.idea/modules/polingonsFx-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/polygonsFx.iml" filepath="$PROJECT_DIR$/.idea/modules/polygonsFx.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/polyngonsFx.iml" filepath="$PROJECT_DIR$/.idea/modules/polyngonsFx.iml" />
     </modules>
   </component>
