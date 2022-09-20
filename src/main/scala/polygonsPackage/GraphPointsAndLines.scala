@@ -7,7 +7,9 @@ import scalafx.scene.chart.{LineChart, XYChart}
 class GraphPointsAndLines(var lineChart: LineChart[Number, Number]) {
 
 
-    def createLineChart() = {
+    def createLineChart(listPoints: List[(Int, Int)]) = {
+
+        /*
         val dataRaw = List(
             (4, 24),
             (1, 23),
@@ -22,6 +24,8 @@ class GraphPointsAndLines(var lineChart: LineChart[Number, Number]) {
             (3, 15),
             (11, 29))
 
+         */
+        val dataRaw = listPoints
 
         val data = ObservableBuffer(dataRaw.map {
             //x =>  Tuple2(x.get("timestamp").get.toString, x.get("goal").get.toString)
