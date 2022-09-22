@@ -6,7 +6,7 @@ import scalafx.scene.shape.Line
 import scala.math.{abs, sqrt}
 
 
-class CalculateArea(paneLineas: Pane) {
+class CalculateArea() {
 
     private def _myPow(number: Double): Double = {
         number * number
@@ -21,7 +21,7 @@ class CalculateArea(paneLineas: Pane) {
     }
 
 
-    private def _findCenterPoint(pointsListsFinal: List[(Double, Double)]) = {
+    def findCenterPoint(pointsListsFinal: List[(Double, Double)]) = {
         val xMax: Double = pointsListsFinal.map(x => x._1).reduce {
             (x, y) => if (x > y) x else y
         }
@@ -95,26 +95,13 @@ class CalculateArea(paneLineas: Pane) {
 
         val pointsListsFinal = pointsListsDouble ++ List(pointsListsDouble(0))
 
-        val genLines = new GenLines()
-        val listLines: List[Line] = (0 to (pointsListsFinal.length - 1)).toList
-            .map { x =>
-                if (x >= 1) {
-                    genLines.genLine(pointsListsFinal(x - 1), pointsListsFinal(x))
-                } else {
-                    new Line()
-                }
-            }
-
-        paneLineas.children = listLines
 
         val area = (0 to (pointsListsFinal.length - 1)).toList
             .map { x =>
                 if (x >= 1) {
                     println((pointsListsFinal(x - 1), pointsListsFinal(x)))
 
-
-
-                    val centerPoint = _findCenterPoint(pointsListsFinal)
+                    val centerPoint = findCenterPoint(pointsListsFinal)
                     val height = _distanceOrtogonal(pointsListsFinal(x - 1), pointsListsFinal(x), centerPoint)
                     val base = _distanceBetweenPoints(pointsListsFinal(x - 1), pointsListsFinal(x))
                     val indArea = (height * base) / 2.0

@@ -15,10 +15,14 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
     var lineChart: LineChart[Number, Number], val labelArea: Label, val xaxis: NumberAxis, val yaxis: NumberAxis,
     val tabLineas: Tab, val paneLineas: Pane)  {
 
+    val exampeText =
+        """50,50
+          |50,100
+          |100,100
+          |100,50""".stripMargin
 
-    //val axis: Axis[Number] = lineChart.getYAxis()
-    //axis.setAutoRanging(false)
-    //axis.setLayoutY(0.1)
+    inputCoorFiled.setText(exampeText)
+
 
 
     yaxis.setAutoRanging(false)
@@ -39,19 +43,36 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
 
     def functionPlay(event: ActionEvent): Unit = {
         println("en funcion")
-        val textPlain = inputCoorFiled.getText
-        val pointsListInt: List[(Int, Int)] = textPlain.split("\n").map {
-            x =>
-                val spl = x.split(",")
-                (spl(0).toInt, spl(1).toInt)
-        }.toList
+
+        val fileNameText = fileNameField.getText
+        val pointsListInt: List[(Int, Int)] = if (fileNameText != "") {
+            val readFileInstance = new ReadFile(fileNameField)
+            val pointsListInt = readFileInstance.readFile(fileNameText)
+            pointsListInt
+        } else {
+            val textPlain = inputCoorFiled.getText
+            val pointsListInt: List[(Int, Int)] = textPlain.split("\n").map {
+                x =>
+                    val spl = x.split(",")
+                    (spl(0).toInt, spl(1).toInt)
+            }.toList
+            pointsListInt
+        }
+
+
+
+
+
         pointsListInt.foreach(println)
 
         val graphLinesInstance = new GraphPointsAndLines(lineChart)
         graphLinesInstance.createLineChart(pointsListInt)
 
-        val calculateAreaInstance = new CalculateArea(paneLineas)
+        val calculateAreaInstance = new CalculateArea()
         val area = calculateAreaInstance.calculateArea(pointsListInt)
+
+        val genlinesInstance = new GenLines(paneLineas)
+        genlinesInstance.genLine(pointsListInt)
 
         labelArea.setText(s"El area es: ${area.toString}")
 
