@@ -1,9 +1,12 @@
 package polygonsPackage
 
+import scalafx.scene.layout.Pane
+import scalafx.scene.shape.Line
+
 import scala.math.{abs, sqrt}
 
 
-class CalculateArea {
+class CalculateArea(paneLineas: Pane) {
 
     private def _myPow(number: Double): Double = {
         number * number
@@ -92,11 +95,25 @@ class CalculateArea {
 
         val pointsListsFinal = pointsListsDouble ++ List(pointsListsDouble(0))
 
+        val genLines = new GenLines()
+        val listLines: List[Line] = (0 to (pointsListsFinal.length - 1)).toList
+            .map { x =>
+                if (x >= 1) {
+                    genLines.genLine(pointsListsFinal(x - 1), pointsListsFinal(x))
+                } else {
+                    new Line()
+                }
+            }
+
+        paneLineas.children = listLines
 
         val area = (0 to (pointsListsFinal.length - 1)).toList
             .map { x =>
                 if (x >= 1) {
                     println((pointsListsFinal(x - 1), pointsListsFinal(x)))
+
+
+
                     val centerPoint = _findCenterPoint(pointsListsFinal)
                     val height = _distanceOrtogonal(pointsListsFinal(x - 1), pointsListsFinal(x), centerPoint)
                     val base = _distanceBetweenPoints(pointsListsFinal(x - 1), pointsListsFinal(x))
