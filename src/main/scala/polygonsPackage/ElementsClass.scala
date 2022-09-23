@@ -15,6 +15,11 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
     var lineChart: LineChart[Number, Number], val labelArea: Label, val xaxis: NumberAxis, val yaxis: NumberAxis,
     val tabLineas: Tab, val paneLineas: Pane)  {
 
+
+    xaxis.scaleX = 0.0
+    yaxis.scaleY = 0.0
+
+
     val exampeText =
         """50,50
           |50,100
@@ -72,7 +77,7 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
         val area = calculateAreaInstance.calculateArea(pointsListInt)
 
         val genlinesInstance = new GenLines(paneLineas)
-        genlinesInstance.genLine(pointsListInt)
+        genlinesInstance.genLine(pointsListInt, xaxis, yaxis)
 
         labelArea.setText(s"El area es: ${area.toString}")
 

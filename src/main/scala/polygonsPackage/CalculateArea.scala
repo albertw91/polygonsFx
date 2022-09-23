@@ -28,20 +28,28 @@ class CalculateArea() {
         val xMin: Double = pointsListsFinal.map(x => x._1).reduce {
             (x, y) => if (x < y) x else y
         }
-        val yMax: Double = pointsListsFinal.map(y => y._1).reduce {
+        val yMax: Double = pointsListsFinal.map(y => y._2).reduce {
             (x, y) => if (x > y) x else y
         }
-        val yMin: Double = pointsListsFinal.map(y => y._1).reduce {
+        val yMin: Double = pointsListsFinal.map(y => y._2).reduce {
             (x, y) => if (x < y) x else y
         }
 
         //(xMin, 0), (xMax, 0), (0, yMin), (0, yMax)
+
+        println("maxmin elements")
+        println(xMax)
+        println(xMin)
+        println(yMax)
+        println(yMin)
+
 
         val middleX = _middlePoint((xMin, 0), (xMax, 0))
 
         val middleY = _middlePoint((0, yMin), (0, yMax))
         //val centerPoint = middlePoint(middleX, middleY)
         val centerPoint = (middleX._1, middleY._2)
+        println("centerPoint")
         println(centerPoint)
         centerPoint
     }
@@ -94,14 +102,14 @@ class CalculateArea() {
         val pointsListsDouble = pointsListInt.map(x => (x._1.toDouble, x._2.toDouble))
 
         val pointsListsFinal = pointsListsDouble ++ List(pointsListsDouble(0))
-
+        val centerPoint = findCenterPoint(pointsListsFinal)
 
         val area = (0 to (pointsListsFinal.length - 1)).toList
             .map { x =>
                 if (x >= 1) {
                     println((pointsListsFinal(x - 1), pointsListsFinal(x)))
 
-                    val centerPoint = findCenterPoint(pointsListsFinal)
+
                     val height = _distanceOrtogonal(pointsListsFinal(x - 1), pointsListsFinal(x), centerPoint)
                     val base = _distanceBetweenPoints(pointsListsFinal(x - 1), pointsListsFinal(x))
                     val indArea = (height * base) / 2.0

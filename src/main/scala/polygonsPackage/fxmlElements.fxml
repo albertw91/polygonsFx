@@ -8,6 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import java.net.*?>
+<?import javafx.beans.*?>
 
 <TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="polygonsPackage.ElementsClass">
    <content>
@@ -42,10 +45,22 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabLineas" text="Lineas">
+            <Tab text="Lineas">
                <content>
-                  <Pane fx:id="paneLineas" prefHeight="200.0" prefWidth="200.0" />
+                  <Pane prefHeight="390.0" prefWidth="545.0">
+                     <padding>
+                        <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
+                     </padding></Pane>
                </content>
+            </Tab>
+            <Tab fx:id="tabLineas" text="LineasTwo">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane fx:id="paneLineas" layoutX="41.0" layoutY="28.0" prefHeight="366.0" prefWidth="522.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
         </tabs>
       </TabPane>
