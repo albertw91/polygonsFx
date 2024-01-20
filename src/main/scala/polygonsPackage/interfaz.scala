@@ -15,7 +15,7 @@ object interfaz extends JFXApp3 {
         val root = FXMLView(resource, NoDependencyResolver)
 
         stage = new JFXApp3.PrimaryStage {
-            title.value = "Take a break"
+            title.value = "Calculate Area"
 
 
             /** Metodos reactivos de los botones

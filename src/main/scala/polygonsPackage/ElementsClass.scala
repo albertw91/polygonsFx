@@ -8,16 +8,13 @@ import scalafxml.core.macros.sfxml
 import scalafx.Includes._
 import scalafx.scene.layout.Pane
 import scalafx.scene.shape.{Line, LineTo, MoveTo, Path}
+import scalafx.scene.text.Font
 
 
 @sfxml
 class ElementsClass(val uploadButton: Button, val startButton: Button, val fileNameField: TextField, val inputCoorFiled: TextArea,
     var lineChart: LineChart[Number, Number], val labelArea: Label, val xaxis: NumberAxis, val yaxis: NumberAxis,
     val tabLineas: Tab, val paneLineas: Pane)  {
-
-
-    xaxis.scaleX = 0.0
-    yaxis.scaleY = 0.0
 
 
     val exampeText =
@@ -29,6 +26,9 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
     inputCoorFiled.setText(exampeText)
 
 
+    // grafica
+    xaxis.scaleX = 0.0
+    yaxis.scaleY = 0.0
 
     yaxis.setAutoRanging(false)
     yaxis.setLowerBound(0)
@@ -45,9 +45,9 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
     //path.getElements().add(moveTo)
     //path.getElements().addAll(line1, line2)
 
-
+    // Calcular area. está en el xml
     def functionPlay(event: ActionEvent): Unit = {
-        println("en funcion")
+        // calcula area, hace grafico y grafica poligonos
 
         val fileNameText = fileNameField.getText
         val pointsListInt: List[(Int, Int)] = if (fileNameText != "") {
@@ -64,10 +64,6 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
             pointsListInt
         }
 
-
-
-
-
         pointsListInt.foreach(println)
 
         val graphLinesInstance = new GraphPointsAndLines(lineChart)
@@ -78,7 +74,7 @@ class ElementsClass(val uploadButton: Button, val startButton: Button, val fileN
 
         val genlinesInstance = new GenLines(paneLineas)
         genlinesInstance.genLine(pointsListInt, xaxis, yaxis)
-
+        labelArea.setFont(Font.font ("Consolas", 16))
         labelArea.setText(s"El area es: ${area.toString}")
 
     }
